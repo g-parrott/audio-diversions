@@ -38,10 +38,15 @@ void Oscillator::SetFrequency(float frequency)
     _increment = (M_PI * 2 * _freq) / static_cast<float>(_sampleRate);
 }
 
-void Oscillator::FillBuffer(std::vector<float> &buffer)
+void Oscillator::FillBuffer(std::vector<float> &buffer, int channels)
 {
+    float sample = 0;
     for (size_t i = 0; i < buffer.size(); i += 1)
     {
-        buffer[i] = NextSample();
+        if (i % channels == 0)
+        {
+            sample = NextSample();
+        }
+        buffer[i] = sample;
     }
 }

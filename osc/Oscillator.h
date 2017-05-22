@@ -29,7 +29,7 @@ class Oscillator {
 
     void SetFrequency(float frequency);
 
-    void FillBuffer(std::vector<float> &buffer);
+    void FillBuffer(std::vector<float> &buffer, int channels);
 
     virtual float NextSample() = 0;
     virtual std::shared_ptr<Oscillator> Clone(float frequency, float amplitude) = 0;
