@@ -3,3 +3,6 @@ all: test.o
 
 test.o: test.cpp
 	clang++ -c -std=c++14 test.cpp
+
+clean:
+	rm *.o test
