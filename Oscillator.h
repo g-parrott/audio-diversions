@@ -8,10 +8,12 @@
 
 #include <vector>
 
+#include <memory>
+
 #define _USE_MATH_DEFINES
 
 class Oscillator {
-  private:
+  protected:
     float _phase {0.f};
     float _increment {0.f};
     float _freq {0.f};
@@ -19,13 +21,19 @@ class Oscillator {
 
     int _sampleRate {44100};
 
+    void IncrementPhase();
+
   public:
     Oscillator(float frequency, float amplitude);
     Oscillator(float frequency, float amplitude, int sampleRate);
 
+    void SetFrequency(float frequency);
+
     void FillBuffer(std::vector<float> &buffer);
 
     virtual float NextSample() = 0;
+    virtual std::shared_ptr<Oscillator> Clone(float frequency, float amplitude) = 0;
+    virtual std::shared_ptr<Oscillator> Clone(float frequency, float amplitude, int sampleRate) = 0;
 };
 
 #endif // OSC_H_
