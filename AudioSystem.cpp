@@ -17,7 +17,7 @@ AudioSystem::AudioSystem(int sampleRate, Uint8 channels, Uint16 sampleSize)
     SDL_zero(want);
 
     want.freq = sampleRate;
-    want.format = format;
+    want.format = _format;
     want.channels = channels;
     want.samples = sampleSize;
 
