@@ -58,6 +58,11 @@ void SimpleSynth::SetFrequencyAll(float frequency)
     }
 }
 
+void SimpleSynth::SetAmplitude(int oscId, float amplitude)
+{
+    _oscs[oscId]->SetAmplitude(amplitude);
+}
+
 void SimpleSynth::SetAmplitudeAll(float amplitude)
 {
     float amp = amplitude;
@@ -70,15 +75,85 @@ void SimpleSynth::SetAmplitudeAll(float amplitude)
 
 std::vector<float> SimpleSynth::GetSamples(float secs, float frequency, float amplitude)
 {
-    int numSamples = static_cast<int>(secs * _sampleRate);
+    size_t numSamples = static_cast<size_t>(secs * _sampleRate);
     std::vector<float> samples;
     samples.reserve(numSamples);
 
     SetFrequencyAll(frequency);
     SetAmplitudeAll(amplitude);
 
-    for (auto o : _oscs)
+    float sample = 0;
+    for (size_t i = 0; i < numSamples; i += 1)
     {
-        samples.push_back()
+        for (auto o : _oscs)
+        {
+            sample += o->NextSample();
+        }
+        samples.push_back(sample);
+        sample = 0;
+    }
+
+    return samples;
+}
+
+std::vector<float> SimpleSynth::GetSamples(float secs)
+{
+    size_t numSamples = static_cast<size_t>(secs * _sampleRate);
+    std::vector<float> samples;
+
+    float sample = 0;
+    for (size_t i = 0; i < numSamples; i += 1)
+    {
+        for (auto o : _oscs)
+        {
+            sample += o->NextSample();
+        }
+        samples.push_back(sample);
+        sample = 0;
+    }
+
+    return samples;
+}
+
+void SimpleSynth::GetSamples(float secs, float frequency, float amplitude, std::vector<float> &out)
+{
+    size_t numSamples = static_cast<size_t>(secs * _sampleRate);
+    if (out.size() < numSamples)
+    {
+        out.resize(numSamples);
+    }
+
+    SetFrequencyAll(frequency);
+    SetAmplitudeAll(amplitude);
+
+    float sample = 0;
+    for (size_t i = 0; i < numSamples; i += 1)
+    {
+        for (auto o : _oscs)
+        {
+            sample += o->NextSample();
+        }
+        out[i] = sample;
+        sample = 0;
+    }
+}
+
+void SimpleSynth::GetSamples(float secs, std::vector<float> &out)
+{
+    size_t numSamples = static_cast<size_t>(secs * _sampleRate);
+    if (out.size() < numSamples)
+    {
+        out.resize(numSamples);
+    }
+
+    float sample = 0;
+    for (size_t i = 0; i < numSamples; i += 1)
+    {
+        for (auto o : _oscs)
+        {
+            sample += o->NextSample();
+        }
+        out[i] = sample;
+        sample = 0;
     }
 }
