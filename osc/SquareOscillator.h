@@ -3,7 +3,7 @@
 
 #include "Oscillator.h"
 
-class SquareOscillator : Oscillator
+class SquareOscillator : public Oscillator
 {
     public:
         SquareOscillator(float frequency, float amplitude);

@@ -3,7 +3,7 @@
 
 #include "Oscillator.h"
 
-class SineOscillator : Oscillator
+class SineOscillator : public Oscillator
 {
     public:
         SineOscillator(float frequency, float amplitude);

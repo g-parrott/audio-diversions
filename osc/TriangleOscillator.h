@@ -3,7 +3,7 @@
 
 #include "Oscillator.h"
 
-class TriangleOscillator : Oscillator
+class TriangleOscillator : public Oscillator
 {
     public:
         TriangleOscillator(float frequency, float amplitude);

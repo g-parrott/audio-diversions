@@ -3,7 +3,7 @@
 
 #include "Oscillator.h"
 
-class SawUpOscillator : Oscillator
+class SawUpOscillator : public Oscillator
 {
     public:
         SawUpOscillator(float frequency, float amplitude);

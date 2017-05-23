@@ -28,6 +28,7 @@ class Oscillator {
     Oscillator(float frequency, float amplitude, int sampleRate);
 
     void SetFrequency(float frequency);
+    void SetAmplitude(float amplitude);
 
     void FillBuffer(std::vector<float> &buffer, int channels);
 

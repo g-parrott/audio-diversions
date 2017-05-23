@@ -38,6 +38,11 @@ void Oscillator::SetFrequency(float frequency)
     _increment = (M_PI * 2 * _freq) / static_cast<float>(_sampleRate);
 }
 
+void Oscillator::SetAmplitude(float amplitude)
+{
+    _amp = amplitude;
+}
+
 void Oscillator::FillBuffer(std::vector<float> &buffer, int channels)
 {
     float sample = 0;
