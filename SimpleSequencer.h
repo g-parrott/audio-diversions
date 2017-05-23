@@ -5,6 +5,8 @@
 
 class SimpleSequencer
 {
+    private:
+    public:
 };
 
 #endif // SIMPLE_SEQ_H_
