@@ -20,9 +20,6 @@ class SimpleSynth
         int _sampleCount {1024};
 
 
-        AudioSystem _audioSystem;
-
-
         std::map<OscType, std::unique_ptr<Oscillator>> _oscillatorFactory;
 
 

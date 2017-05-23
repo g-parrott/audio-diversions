@@ -2,20 +2,20 @@
 
 SimpleSynth::SimpleSynth()
 {
-    SimpleSynth(_sampleRate);
+    SimpleSynth(_sampleRate, _channels, _sampleCount);
 }
 
-SimpleSynth::SimpleSynth(int sampleRate) : _audioSystem(sampleRate, _channels, _sampleCount)
+SimpleSynth::SimpleSynth(int sampleRate)
 {
     SimpleSynth(sampleRate, _channels, _sampleCount);
 }
 
-SimpleSynth::SimpleSynth(int sampleRate, Uint8 channels) : _audioSystem(sampleRate, channels, _sampleCount)
+SimpleSynth::SimpleSynth(int sampleRate, Uint8 channels)
 {
     SimpleSynth(sampleRate, channels, _sampleCount);
 }
 
-SimpleSynth::SimpleSynth(int sampleRate, Uint8 channels, Uint16 sampleCount) : _audioSystem(sampleRate, channels, sampleCount)
+SimpleSynth::SimpleSynth(int sampleRate, Uint8 channels, Uint16 sampleCount)
 {
     _sampleRate = sampleRate;
     _channels = channels;
