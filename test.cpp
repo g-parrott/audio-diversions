@@ -32,7 +32,7 @@ int main() {
 
   const int sr = 48000;
   float data[sr];
-  float waveFreq = 440.f;
+  float waveFreq = 120.f;
   float phase = 0.f;
   float increment = waveFreq * M_PI * 2 / static_cast<float>(sr);
   float amp = 0.3f;
@@ -54,17 +54,17 @@ int main() {
   phase = 0.f;
 
   amp = 0.1f;
-  waveFreq = 440.f*1.5f;
+  waveFreq = 120.f*1.5f;
 
   increment = (waveFreq * M_PI * 2) / static_cast<float>(sr);
 
-  for (int i = 0; i < sr; i += 1) {
-    if (phase >= 0 && phase < M_PI) {
-      data[i] += amp;
+    for (int i = 0; i < sr; i += 1) {
+        if (phase >= 0 && phase < M_PI) {
+          data[i] *= amp;
     }
 
     else if (phase >= M_PI && phase < M_PI * 2) {
-      data[i] += -amp;
+      data[i] *= -amp;
     }
 
     if (phase >= M_PI * 2) {
@@ -77,9 +77,9 @@ int main() {
     phase += increment;
   }
 
-  waveFreq = 440.f / 1.5f;
+  waveFreq = 50;
   increment = (waveFreq * M_PI * 2) / static_cast<float>(sr);
-  phase = 0.0f;
+  phase = M_PI / 4.f;
   amp = 0.3f;
 
   for (int i = 0; i < sr; i += 1) {
